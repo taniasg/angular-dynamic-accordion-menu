@@ -1,0 +1,123 @@
+.sidebar-menu {
+  width: 95%;
+  height: 100%;
+  box-shadow: 0 3px 20px 0 rgba(154, 161, 171, 0.16);
+  background-color: var(--cuti-white);
+
+  #sidebar-wrapper {
+    background-color: var(--cuti-white);
+    box-shadow: 0 3px 15px 0 rgba(156, 161, 175, 0.15);
+    width: 100%;
+
+    .sidebar-heading {
+      display: flex;
+      justify-content: center;
+      padding: 0.875rem 1.25rem;
+      font-size: 1.2rem;
+
+      .tania_logo {
+        width: 100px;
+        // height: 57px;
+        margin-top: 15px;
+      }
+    }
+
+    .menu-options {
+      margin-top: 25px;
+
+      .permiso-link {
+        width: 100%;
+        text-align: start;
+        font-size: 14px;
+        height: 48px;
+        color: var(--cuti-dark-gray);
+        a {
+          color: inherit;
+          text-decoration: none;
+          outline: none;
+          display: block;
+          height: inherit;
+          width: inherit;
+          &.is-active {
+            color: #3366cc !important;
+          }
+        }
+      }
+
+      .permiso-link-2 {
+        width: max-content;
+      }
+
+      .permiso-link-3 {
+        width: 90%;
+        margin-left: 10%;
+        text-align: start;
+        font-size: 14px;
+        height: 48px;
+        color: var(--cuti-dark-gray);
+        a {
+          color: inherit;
+          text-decoration: none;
+          outline: none;
+          display: block;
+          height: inherit;
+          width: inherit;
+          &.is-active {
+            color: #3366cc !important;
+          }
+        }
+      }
+    }
+
+    .sidebar-footer {
+      color: var(--cuti-dark-gray);
+      position: absolute;
+      bottom: 10px;
+      right: 50px;
+      font-size: 14px;
+    }
+  }
+}
+
+// + .sidebar-heading {
+
+// }
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+}
+
+.mat-expansion-panel {
+  box-shadow: none;
+}
+.mat-expansion-panel-spacing {
+  margin: 0;
+}
+
+.mat-expansion-indicator::after {
+  border-width: 0 1px 1px 0 !important;
+}
+.mat-expansion-panel-header-title {
+  color: var(--cuti-dark-gray) !important;
+  font-size: 15px;
+}
+.mat-expansion-panel-header-title.is-selected {
+  color: #3366cc !important;
+}
+
+.mat-expansion-panel-header.is-selected {
+  span.mat-expansion-indicator::after {
+    color: #3366cc !important;
+  }
+}
+
+.btnInicio {
+  width: 270px;
+  color: var(--cuti-dark-gray);
+  text-align: start;
+  &.is-selected {
+    color: #3366cc !important;
+  }
+}

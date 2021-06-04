@@ -1,0 +1,121 @@
+<div
+  class="d-flex sidebar-menu"
+  id="wrapper"
+>
+  <!-- Sidebar start -->
+  <div id="sidebar-wrapper">
+    <div class="sidebar-heading">
+      <img
+        src="assets/logos/taniasanchez.png"
+        class="tania_logo"
+        alt="taniasanchez :)"
+      />
+    </div>
+    <div class="menu-options">
+      <ng-container
+        *ngTemplateOutlet="accordion; context: { items: menu }"
+      ></ng-container>
+
+      <!-- MENU ACORDEON -->
+      <ng-template let-items="items" #accordion>
+        <mat-accordion>
+          <mat-expansion-panel
+            *ngFor="let item of items"
+            [hideToggle]="!item.children || item.children.length === 0"
+          >
+            <!-- CON HIJOS -->
+            <mat-expansion-panel-header
+              *ngIf="
+                item.children && item?.children.length > 0;
+                else nochildren
+              "
+              (click)="selectLevel(item)"
+              class="menu"
+              [class.is-selected]="levelSelected(item.label)"
+            >
+              <mat-panel-title>
+                <span
+                  *ngIf="item.icon"
+                  class="
+                    material-icons-outlined
+                    fs-16
+                    d-flex
+                    align-items-center
+                  "
+                  style="padding-right: 11px"
+                >
+                  {{ item.icon }}
+                </span>
+                {{ item?.label | titlecase }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <!-- Se crea submenu -->
+            <ng-container *ngIf="item?.children && item?.children.length > 0">
+              <ng-container
+                *ngTemplateOutlet="accordion; context: { items: item.children }"
+              ></ng-container>
+            </ng-container>
+
+            <!-- SIN HIJOS -->
+            <ng-template #nochildren>
+              <!-- Si tiene icon, es una opcion principal  -->
+              <div
+                *ngIf="item.icon; else button"
+                (click)="
+                  selectLevel(item); navigateInicio(); accordionMenu.closeAll()
+                "
+                class="menu d-flex align-items-start"
+              >
+                <button
+                  mat-flat-button
+                  class="btnInicio"
+                  [class.is-selected]="levelSelected(item.label)"
+                >
+                  <span
+                    matPreffix
+                    class="material-icons-outlined fs-16"
+                    style="padding: 0 11px 0 8px"
+                  >
+                    {{ item.icon }}
+                  </span>
+
+                  {{ item?.label | titlecase }}
+                </button>
+              </div>
+
+              <!-- Es una opcion final (button link) -->
+              <ng-template #button>
+                <button mat-flat-button class="permiso-link" *ngIf="item.link">
+                  <a
+                    [routerLink]="item.link"
+                    routerLinkActive="is-active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    (click)="linkSelected()"
+                  >
+                    {{ item.label | titlecase }}
+                  </a>
+                </button>
+                <button mat-flat-button class="permiso-link" *ngIf="!item.link">
+                  <span
+                    class="
+                      material-icons-outlined
+                      fs-16
+                      d-flex
+                      align-items-center
+                    "
+                    style="padding-right: 11px"
+                  >
+                    {{ item.icon }}
+                  </span>
+                  {{ item.label | titlecase }}
+                </button>
+              </ng-template>
+            </ng-template>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </ng-template>
+    </div>
+  </div>
+  <!-- Sidebar end -->
+</div>
